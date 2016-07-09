@@ -43,6 +43,74 @@ public class JFrameTime extends javax.swing.JInternalFrame {
     public JFrameTime() {
         initComponents();
        
+        LoadTag();
+        LoadTable();
+        AutoCompletion.enable(cboTags);
+        
+        timer = new Timer(1000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                s = s + 1;
+                if (s > 59) {
+                    s = 0;
+                    m = m + 1;
+
+                } else if (m > 59 && s > 59) {
+                    m = 0;
+                    h = h + 1;
+
+                } else if (s == 0 && m == 0 && h == 8) {
+                    timer.stop();
+                    Object[] options1 = {"Save", "Cancel"};
+                    JPanel panel = new JPanel();
+                    panel.add(new JLabel("Tag is overtime. Do you want Save?"));
+                    int result = JOptionPane.showOptionDialog(null, panel, "Enter a Number",
+                            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+                            null, options1, null);
+                    if (result == JOptionPane.YES_OPTION) {
+                        Time time = new Time();
+                        LogTime_Bus ltb = new LogTime_Bus();
+                        int id = tb.GetIdCbo(cboTags.getSelectedItem().toString(), LogTimeMain.Username);
+                        int second = Integer.parseInt(lblSecond.getText()) + Integer.parseInt(lblMinute.getText()) * 60 + Integer.parseInt(lblHour.getText()) * 3600;
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                        try {
+
+                            Date parsedDate1 = dateFormat.parse(txtStartTime.getText());
+                            Timestamp timestamp1 = new java.sql.Timestamp(parsedDate1.getTime());
+                            Timestamp timestamp2 = new java.sql.Timestamp(parsedDate1.getTime() + second * 1000);
+                            txtFinishTime.setText(timestamp2.toString());
+                            time.setFinishTime(timestamp2);
+                            time.setEndUser(LogTimeMain.Username);
+                            time.setDescription(txtDes.getText());
+                            time.setTags(id);
+                            time.setTimes(second);
+                            time.setStartTime(timestamp1);
+                            if (ltb.Create(time)) {
+                                JOptionPane.showMessageDialog(null, "Successful!");
+                                LoadTable();
+                                Clear();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "fail");
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(JFrameTime.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                lblSecond.setText("0" + Integer.toString(s));
+                lblMinute.setText("0" + Integer.toString(m));
+                if (Integer.toString(s).length() == 2) {
+                    lblSecond.setText(Integer.toString(s));
+
+                } else if (Integer.toString(m).length() == 2) {
+                    lblMinute.setText(Integer.toString(m));
+
+                }
+                lblHour.setText("0" + Integer.toString(h));
+
+            }
+        });
 
     }
 void LoadTable() {
@@ -69,7 +137,17 @@ void LoadTable() {
         }
         cboTags.setModel(dc);
     }
-   
+     void Clear() {
+        txtFinishTime.setText("");
+        txtStartTime.setText("");
+        txtDes.setText("");
+        
+        lblHour.setText("00");
+        lblMinute.setText("00");
+        lblSecond.setText("00");
+        LoadTag();
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
