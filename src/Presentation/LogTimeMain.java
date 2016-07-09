@@ -286,6 +286,11 @@ public class LogTimeMain extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
        
+        Common.Common.DeleteSession();
+        JFrameMain f = new JFrameMain(lblTK.getText());
+        f.setVisible(true);
+        this.dispose();
+
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLogoutActionPerformed
