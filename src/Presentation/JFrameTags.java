@@ -20,16 +20,31 @@ import javax.swing.table.TableRowSorter;
  */
 public class JFrameTags extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form JFrameTags
-     */
-   
+    Tags t = new Tags();
+    Tags_Bus tb = new Tags_Bus();
+    Account_Bus a = new Account_Bus();
+
     public JFrameTags() {
-      
+        super("MANAGE TAGS", false, false, false, false);
+        // initComponents();
+        getContentPane().setBackground(new java.awt.Color(0, 153, 100));
+        ImageIcon titleIcon = new ImageIcon("src\\Images\\1463614449_tag.png");
+        this.setFrameIcon(titleIcon);
+        LoadData();
     }
 
     private void LoadData() {
-      
+        DefaultTableModel dt = new DefaultTableModel();
+        dt.addColumn("ID");
+        dt.addColumn("Tag Name");
+        dt.addColumn("Description");
+        for (Tags t : tb.findall(LogTimeMain.Username)) {
+            dt.addRow(new Object[]{t.getId(), t.getTagName(), t.getDescription()});
+
+        }
+        this.tblTags.setModel(dt);
+        this.tblTags.repaint();
+        this.tblTags.revalidate();
     }
 
     /**
@@ -217,35 +232,88 @@ public class JFrameTags extends javax.swing.JInternalFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_btnUpdateActionPerformed
-    void ClearText() {
-      
+        try {
+            String tagName = txtTagName.getText();
+            String Des = txtDes.getText();
+            int ID = Integer.parseInt(tblTags.getValueAt(tblTags.getSelectedRow(), 0).toString());
+            if (tagName.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Tag name is empty");
+            } else {
+
+                t.setTagName(tagName);
+                t.setDescription(Des);
+                t.setId(ID);
+                if (tb.Update(t)) {
+                    LoadData();
+                    ClearText();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Update tag failure");
+
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Tags is not selected!");
+        }
     }
 
-   
-    
+    void ClearText() {
+        txtTagName.setText("");
+        txtDes.setText("");
+    }
+
+    public boolean checktag(String name) {
+        for (Tags us : tb.findall(LogTimeMain.Username)) {
+            if (us.getTagName().toUpperCase().equalsIgnoreCase(name.toUpperCase())) {
+                return true;
+            }
+        }
+        return false;
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        
+        String tagName = txtTagName.getText();
+        String Des = txtDes.getText();
+        String Email = LogTimeMain.Username;
+        boolean status = true;
+        //JOptionPane.showMessageDialog(null, id_user);
+        if (tagName.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Tag name is empty");
+        } else if (checktag(tagName)) {
+            JOptionPane.showMessageDialog(null, "Tag name already exist");
+        } else {
+
+            t.setTagName(tagName);
+            t.setDescription(Des);
+            t.setStatus(status);
+            t.setEndUser(Email);
+            if (tb.Create(t)) {
+                LoadData();
+                ClearText();
+            } else {
+                JOptionPane.showMessageDialog(null, "Add Tag failure");
+
+            }
+        }
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-      
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblTagsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTagsMouseClicked
-       
+
     }//GEN-LAST:event_tblTagsMouseClicked
 
     private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
-        
+
     }//GEN-LAST:event_txtSearchKeyPressed
 
     private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
-      
+
     }//GEN-LAST:event_btnUpdate1ActionPerformed
     public void search() {
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
