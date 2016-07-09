@@ -25,7 +25,7 @@ import Bus.*;
  */
 public class ForgotPassword extends javax.swing.JFrame {
 
-   
+   //Reup
     /**
      * Creates new form ForgotPassword
      */
