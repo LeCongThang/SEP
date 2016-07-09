@@ -27,10 +27,17 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Administrator
+ * @author Minh Luan
  */
 public class JFrameTime extends javax.swing.JInternalFrame {
+ Timer timer;
+        Tags_Bus tb = new Tags_Bus();
+    LogTime_Bus ltb = new LogTime_Bus();
 
+    int s = 0;
+    int m = 0;
+    int h = 0;
+    int d = 0;
  
 
     public JFrameTime() {
@@ -38,7 +45,30 @@ public class JFrameTime extends javax.swing.JInternalFrame {
        
 
     }
+void LoadTable() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DefaultTableModel dt = new DefaultTableModel();
+        dt.addColumn("DateofTags");
+        dt.addColumn("StartTime");
+        dt.addColumn("FinishTime");
+        dt.addColumn("Tags");
+        dt.addColumn("Description");
+        for (Time t : ltb.findall(LogTimeMain.Username)) {
+            dt.addRow(new Object[]{t.getdateogTags(), sdf.format(t.getStartTime()), sdf.format(t.getFinishTime()), tb.find(t.getTags()).getTagName(),t.getDescription()});
+        }
+        tblTimes.setModel(dt);
+        tblTimes.repaint();
+        tblTimes.validate();
+    }
 
+    void LoadTag() {
+        DefaultComboBoxModel dc = new DefaultComboBoxModel();
+        for (Tags t : tb.findall(LogTimeMain.Username)) {
+            dc.addElement(t.getTagName());
+
+        }
+        cboTags.setModel(dc);
+    }
    
     /**
      * This method is called from within the constructor to initialize the form.
