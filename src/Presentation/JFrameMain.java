@@ -7,14 +7,6 @@ package Presentation;
 
 import Bus.Account_Bus;
 import Entities.EndUser;
-import java.awt.Color;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 
@@ -187,10 +179,42 @@ public class JFrameMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+       
+                        
+                                       
         // TODO add your handling code here:
 
+        //EndUser_Bus eb = new EndUser_Bus();
+      
+    
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+  try {
+            String username = this.txtEmail.getText();
+            String password = String.valueOf(this.txtPass.getPassword());
+            if (username.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "username empty");
+            } else if (password.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "password empty");
+            } else if (!username.isEmpty() && !password.isEmpty()) {
+
+                e = a.find(username, password);
+                if (chkStay.isSelected() && e != null) {
+                    Common.Common.CreateSession(username, password);
+                    LogTimeMain jf = new LogTimeMain(username);
+                    jf.setVisible(true);
+                    dispose();
+                } else if (e != null) {
+                    LogTimeMain jf = new LogTimeMain(username);
+                    jf.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid Account");
+                }
+            }
+
+        } catch (Exception e) {
+        }
         //EndUser_Bus eb = new EndUser_Bus();
         
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -205,7 +229,9 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-       
+       ForgotPassword f = new ForgotPassword();
+        f.setVisible(true);// TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -234,7 +260,22 @@ public class JFrameMain extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JFrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+    try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(JFrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(JFrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(JFrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(JFrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
