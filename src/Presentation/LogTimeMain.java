@@ -296,7 +296,13 @@ public class LogTimeMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnTagsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTagsActionPerformed
-        
+JFrameTags t = new JFrameTags();
+        this.getContentPane().add(t);
+        Dimension desktopSize = this.getSize();
+        Dimension jInternalFrameSize = t.getSize();
+        t.setLocation((desktopSize.width - jInternalFrameSize.width) / 2 - 3,
+                (desktopSize.height - jInternalFrameSize.height) / 2 + 35);
+        t.setVisible(true);
         //t.toFront();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnTagsActionPerformed
