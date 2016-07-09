@@ -26,7 +26,7 @@ public class JFrameTags extends javax.swing.JInternalFrame {
 
     public JFrameTags() {
         super("MANAGE TAGS", false, false, false, false);
-        // initComponents();
+        initComponents();
         getContentPane().setBackground(new java.awt.Color(0, 153, 100));
         ImageIcon titleIcon = new ImageIcon("src\\Images\\1463614449_tag.png");
         this.setFrameIcon(titleIcon);
