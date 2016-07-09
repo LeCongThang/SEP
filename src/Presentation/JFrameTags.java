@@ -23,30 +23,13 @@ public class JFrameTags extends javax.swing.JInternalFrame {
     /**
      * Creates new form JFrameTags
      */
-    Tags t = new Tags();
-    Tags_Bus tb = new Tags_Bus();
-    Account_Bus a = new Account_Bus();
-
+   
     public JFrameTags() {
-        super("MANAGE TAGS", false, false, false, false);
-        initComponents();
-        ImageIcon titleIcon = new ImageIcon("src\\Images\\1463614449_tag.png");
-        this.setFrameIcon(titleIcon);
-        LoadData();
+      
     }
 
     private void LoadData() {
-        DefaultTableModel dt = new DefaultTableModel();
-        dt.addColumn("ID");
-        dt.addColumn("Tag Name");
-        dt.addColumn("Description");
-        for (Tags t : tb.findall(LogTimeMain.Username)) {
-            dt.addRow(new Object[]{t.getId(), t.getTagName(), t.getDescription()});
-
-        }
-        this.tblTags.setModel(dt);
-        this.tblTags.repaint();
-        this.tblTags.revalidate();
+      
     }
 
     /**
@@ -71,6 +54,8 @@ public class JFrameTags extends javax.swing.JInternalFrame {
         txtDes = new javax.swing.JTextArea();
         txtSearch = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        btnUpdate1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -97,23 +82,26 @@ public class JFrameTags extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblTags);
 
-        btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1462374937_Plus.png"))); // NOI18N
-        btnInsert.setToolTipText("Insert");
+        btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1468020124_download.png"))); // NOI18N
+        btnInsert.setText("Add");
+        btnInsert.setToolTipText("Add");
         btnInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsertActionPerformed(evt);
             }
         });
 
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1462374983_system-software-update.png"))); // NOI18N
-        btnUpdate.setToolTipText("Update");
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1468017867_common-new-edit-compose-glyph.png"))); // NOI18N
+        btnUpdate.setText("Edit");
+        btnUpdate.setToolTipText("Edit");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
 
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1462375022_Close_Box_Red.png"))); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1468022367_editor-trash-delete-recycle-bin-outline-stroke.png"))); // NOI18N
+        btnDelete.setText("Delete");
         btnDelete.setToolTipText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,8 +109,10 @@ public class JFrameTags extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tag Name:");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Description:");
 
         txtDes.setColumns(20);
@@ -136,63 +126,90 @@ public class JFrameTags extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Search:");
+
+        btnUpdate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1468022384_Cancel.png"))); // NOI18N
+        btnUpdate1.setText("Cancel");
+        btnUpdate1.setToolTipText("Cancel");
+        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdate1ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("MANAGE TAGS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(5, 5, 5)
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtTagName))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(62, 62, 62)
-                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(65, 65, 65)
-                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 57, Short.MAX_VALUE))
-                                .addComponent(jScrollPane2)
-                                .addComponent(txtSearch))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(148, 148, 148))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(jLabel2)
+                        .addGap(4, 4, 4)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(btnInsert)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnUpdate)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnDelete)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnUpdate1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(jLabel3)
+                        .addGap(4, 4, 4)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel1)
+                        .addGap(4, 4, 4)
+                        .addComponent(txtTagName, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(131, 131, 131))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addGap(236, 236, 236))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtTagName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel1)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(txtTagName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(btnInsert)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete)
+                    .addComponent(btnUpdate1))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel3))
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -200,117 +217,47 @@ public class JFrameTags extends javax.swing.JInternalFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        try{
-        String tagName = txtTagName.getText();
-        String Des = txtDes.getText();
-        int ID = Integer.parseInt(tblTags.getValueAt(tblTags.getSelectedRow(), 0).toString());
-        if (tagName.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Tag name is empty");
-        } else {
-
-            t.setTagName(tagName);
-            t.setDescription(Des);
-            t.setId(ID);
-            if (tb.Update(t)) {
-                LoadData();
-                ClearText();
-            } else {
-                JOptionPane.showMessageDialog(null, "Update tag failure");
-
-            }
-        }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Tags is not selected!");
-        }
+       
     }//GEN-LAST:event_btnUpdateActionPerformed
     void ClearText() {
-        txtTagName.setText("");
-        txtDes.setText("");
+      
     }
 
-    public boolean checktag(String name) {
-        for (Tags us : tb.findall(LogTimeMain.Username)) {
-            if (us.getTagName().toUpperCase().equalsIgnoreCase(name.toUpperCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
+   
+    
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        String tagName = txtTagName.getText();
-        String Des = txtDes.getText();
-        String Email = LogTimeMain.Username;
-        boolean status = true;
-        //JOptionPane.showMessageDialog(null, id_user);
-        if (tagName.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Tag name is empty");
-        } else if (checktag(tagName)) {
-            JOptionPane.showMessageDialog(null, "Tag name already exist");
-        } else {
-
-            t.setTagName(tagName);
-            t.setDescription(Des);
-            t.setStatus(status);
-            t.setEndUser(Email);
-            if (tb.Create(t)) {
-                LoadData();
-                ClearText();
-            } else {
-                JOptionPane.showMessageDialog(null, "Add Tag failure");
-
-            }
-        }
+        
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        try {
-            int ID = Integer.parseInt(tblTags.getValueAt(tblTags.getSelectedRow(), 0).toString());
-            int reply = JOptionPane.showConfirmDialog(null, "Do you really want delete?", "Notice!", JOptionPane.YES_NO_OPTION);
-            if (reply == JOptionPane.YES_OPTION) {
-                tb.delete(ID);
-                LoadData();
-                ClearText();
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Tags is not selected");
-        }
+      
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblTagsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTagsMouseClicked
-        // TODO add your handling code here:
-        int ID = Integer.parseInt(tblTags.getValueAt(tblTags.getSelectedRow(), 0).toString());
-        Tags t = tb.find(ID);
-        if (t != null) {
-            txtTagName.setText(t.getTagName().toString());
-            txtDes.setText(t.getDescription().toString());
-        }
+       
     }//GEN-LAST:event_tblTagsMouseClicked
 
     private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            search();
-        } else if (txtSearch.getText().isEmpty()) {
-            LoadData();
-        }
+        
     }//GEN-LAST:event_txtSearchKeyPressed
+
+    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+      
+    }//GEN-LAST:event_btnUpdate1ActionPerformed
     public void search() {
-        DefaultTableModel dtm = (DefaultTableModel) this.tblTags.getModel();
-        dtm.fireTableDataChanged();
-        TableRowSorter sorter = new TableRowSorter(dtm);
-        this.tblTags.setRowSorter(sorter);
-        sorter.setRowFilter(RowFilter.regexFilter("(?i)" + this.txtSearch.getText()));
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnUpdate1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblTags;

@@ -16,6 +16,7 @@ public class JFrameAboutus extends javax.swing.JInternalFrame {
      */
     public JFrameAboutus() {
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(0,153,100));
     }
 
     /**

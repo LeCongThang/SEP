@@ -15,11 +15,11 @@ import java.sql.*;
 public class ConnectDB {
     private static Connection con = null;
      private static String url = "jdbc:sqlserver://";
-     private static String serverName= "localhost";
+     private static String serverName= "cmu.vanlanguni.edu.vn";
      private static String portNumber = "1433";
-     private static String databaseName= "LogTime";
-     private static String userName = "sa";
-     private static String passWord= "123456";
+     private static String databaseName= "thangle";
+     private static String userName = "thangle";
+     private static String passWord= "19";
 
      public ConnectDB()
      {}

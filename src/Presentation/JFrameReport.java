@@ -5,14 +5,18 @@
  */
 package Presentation;
 
+import Bus.AutoCompletion;
 import Bus.Report_Bus;
+import Bus.Tags_Bus;
 import Entities.Report;
+import Entities.Tags;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -36,52 +40,22 @@ public class JFrameReport extends javax.swing.JInternalFrame {
     /**
      * Creates new form JFrameReport
      */
-    Report_Bus rb = new Report_Bus();
+ 
 
     public JFrameReport() {
         initComponents();
+        
     }
 
-    private static PieDataset createDataset() {
-        DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("One", new Double(43.2));
-        dataset.setValue("Two", new Double(10.0));
-        dataset.setValue("Three", new Double(27.5));
-        dataset.setValue("Four", new Double(17.5));
-        dataset.setValue("Five", new Double(11.0));
-        dataset.setValue("Six", new Double(19.4));
-        return dataset;
-    }
+   
 
-    private static JFreeChart createChart(PieDataset dataset) {
-
-        JFreeChart chart = ChartFactory.createPieChart(
-                "Pie Chart Demo 1", // chart title
-                dataset, // data
-                true, // include legend
-                true,
-                false
-        );
-
-        PiePlot plot = (PiePlot) chart.getPlot();
-        plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
-        plot.setNoDataMessage("No data available");
-        plot.setCircular(false);
-        plot.setLabelGap(0.02);
-        return chart;
-
-    }
+    
 
     /**
      * Creates a panel for the demo (used by SuperDemo.java).
      *
      * @return A panel.
      */
-    public static JPanel createDemoPanel() {
-        JFreeChart chart = createChart(createDataset());
-        return new ChartPanel(chart);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,6 +65,7 @@ public class JFrameReport extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dcFrom = new com.toedter.calendar.JDateChooser();
@@ -100,16 +75,29 @@ public class JFrameReport extends javax.swing.JInternalFrame {
         tblReport = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        cboType = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        cboTags = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+
+        jLabel1.setBackground(new java.awt.Color(0, 153, 100));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("LOG TIME");
 
         setClosable(true);
         setTitle("CHART REPORT");
         setPreferredSize(new java.awt.Dimension(777, 432));
 
-        jLabel2.setText("From");
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("From:");
 
-        jLabel3.setText("To");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("To:");
 
-        btnShow.setText("Report");
+        btnShow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1468021264_Document02.png"))); // NOI18N
+        btnShow.setText("Statistics");
         btnShow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowActionPerformed(evt);
@@ -129,163 +117,141 @@ public class JFrameReport extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblReport);
 
-        jButton1.setText("View Bar Chart");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1468021136_095_Chart.png"))); // NOI18N
+        jButton1.setText("Bar Chart");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("View Pie Chart");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1468021122_pie-chart.png"))); // NOI18N
+        jButton2.setText("Pie Chart");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jLabel4.setBackground(new java.awt.Color(0, 153, 100));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("STATISTICS");
+
+        cboType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Day", "Week", "Month", "Year", "Tags" }));
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Statistic Type:");
+
+        cboTags.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Day", "Week", "Month", "Year", "Tags" }));
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Tags:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(dcFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cboType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dcFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dcTo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(btnShow)
-                        .addGap(0, 54, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addGap(33, 33, 33))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(45, 45, 45)
-                .addComponent(jButton2)
-                .addGap(239, 239, 239))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cboTags, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(dcTo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(171, 171, 171)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dcTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnShow)
-                    .addComponent(jLabel3)
-                    .addComponent(dcFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(82, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(cboTags, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dcFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dcTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addComponent(btnShow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(90, 90, 90))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    void LoadData() {
-
-    }
+   
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
 
-        String startTime = dcFrom.getDateFormatString();
-
-        String finishtime = dcTo.getDateFormatString();
-
-        if (startTime.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "From is null");
-
-        } else if (finishtime.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "To is null");
-
-        } else if (!startTime.isEmpty() && !finishtime.isEmpty()) {
-            try {
-                DefaultTableModel dmt = new DefaultTableModel();
-                dmt.addColumn("Tags");
-                dmt.addColumn("Hours");
-                //dmt.addColumn("StartTime");
-                for (Report r : rb.Data(LogTimeMain.Username, new java.sql.Date(dcFrom.getDate().getTime()), new java.sql.Date(dcTo.getDate().getTime()))) {
-                    dmt.addRow(new Object[]{r.getTagName(), r.getTimes() / 3600 + " Hour"});
-                }
-                tblReport.setModel(dmt);
-                tblReport.repaint();
-                tblReport.validate();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Has field null!");
-            }
-        }
+       
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            DefaultCategoryDataset barChartData = new DefaultCategoryDataset();
-            for (Report r : rb.Data(LogTimeMain.Username, new java.sql.Date(dcFrom.getDate().getTime()), new java.sql.Date(dcTo.getDate().getTime()))) {
-                barChartData.setValue(r.getTimes() / 3600, "Tags", r.getTagName());
-            }
-            JFreeChart barChart = ChartFactory.createBarChart("Total Hours each Tags", "Tags",
-                    "Hours", barChartData, PlotOrientation.VERTICAL,
-                    false, true, false);
-            CategoryPlot barchart = barChart.getCategoryPlot();
-            barchart.setRangeGridlinePaint(Color.GRAY);
-
-            ChartPanel barPanel = new ChartPanel(barChart);
-            JPanel panel = new JPanel();
-            panel.add(barPanel);
-            JOptionPane.showMessageDialog(null, panel, "Bar Chart", 1, null);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Can't show chart");
-        }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        try {
-            DefaultPieDataset dataset = new DefaultPieDataset();
-            for (Report r : rb.Data(LogTimeMain.Username, new java.sql.Date(dcFrom.getDate().getTime()), new java.sql.Date(dcTo.getDate().getTime()))) {
-                dataset.setValue(r.getTagName(), new Double(r.getTimes() / 3600));
-            }
-            JFreeChart chart = ChartFactory.createPieChart(
-                    "Pie Chart", // chart title
-                    dataset, // data
-                    true, // include legend
-                    true,
-                    false
-            );
-
-            PiePlot plot = (PiePlot) chart.getPlot();
-            plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
-            plot.setNoDataMessage("No data available");
-            plot.setCircular(false);
-            plot.setLabelGap(0.02);
-
-            ChartPanel barPanel = new ChartPanel(chart);
-            JPanel panel = new JPanel();
-            panel.add(barPanel);
-            JOptionPane.showMessageDialog(null, panel, "Pie Chart", 1, null);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Can't show chart");
-        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnShow;
+    private javax.swing.JComboBox cboTags;
+    private javax.swing.JComboBox cboType;
     private com.toedter.calendar.JDateChooser dcFrom;
     private com.toedter.calendar.JDateChooser dcTo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblReport;
     // End of variables declaration//GEN-END:variables

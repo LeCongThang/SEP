@@ -11,6 +11,7 @@ public class Time implements java.io.Serializable {
     private int id;
     private String endUser;
     private int tags;
+    private Date dateofTags;
     private Date startTime;
     private Date finishTime;
     private double times;
@@ -19,10 +20,11 @@ public class Time implements java.io.Serializable {
     public Time() {
     }
 
-    public Time(int id, String endUser, int tags, Date startTime, Date finishTime, double times, String description) {
+    public Time(int id, String endUser, int tags, Date dateofTags, Date startTime, Date finishTime, double times, String description) {
         this.id = id;
         this.endUser = endUser;
         this.tags = tags;
+        this.dateofTags = dateofTags;
         this.startTime = startTime;
         this.finishTime = finishTime;
         this.times = times;
@@ -51,6 +53,14 @@ public class Time implements java.io.Serializable {
 
     public void setTags(int tags) {
         this.tags = tags;
+    }
+
+    public Date getdateogTags() {
+        return this.dateofTags;
+    }
+
+    public void setdateogTags(Date dateogTags) {
+        this.dateofTags = dateogTags;
     }
 
     public Date getStartTime() {

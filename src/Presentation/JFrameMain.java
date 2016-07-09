@@ -33,7 +33,7 @@ public class JFrameMain extends javax.swing.JFrame {
     public JFrameMain() {
         initComponents();
         setLocationRelativeTo(null);
-        getContentPane().setBackground(Color.getHSBColor(1.6f, 0.86f, 1.46f));
+        getContentPane().setBackground(new java.awt.Color(0,153,100));
         JRootPane rootPane = this.getRootPane();
         rootPane.setDefaultButton(btnLogin);
 
@@ -43,7 +43,7 @@ public class JFrameMain extends javax.swing.JFrame {
         initComponents();
         txtEmail.setText(Email);
         setLocationRelativeTo(null);
-        getContentPane().setBackground(Color.getHSBColor(1.6f, 0.86f, 1.46f));
+        getContentPane().setBackground(new java.awt.Color(0,153,100));
         JRootPane rootPane = this.getRootPane();
         rootPane.setDefaultButton(btnLogin);
         txtPass.requestFocus();
@@ -65,16 +65,17 @@ public class JFrameMain extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         txtPass = new javax.swing.JPasswordField();
-        chkStayHere = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        chkStay = new javax.swing.JCheckBox();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("M2T SOFTWARE ");
-        setBackground(new java.awt.Color(12, 182, 163));
+        setBackground(new java.awt.Color(0, 153, 102));
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Email:");
@@ -102,13 +103,6 @@ public class JFrameMain extends javax.swing.JFrame {
             }
         });
 
-        chkStayHere.setText("Duy trì đăng nhập");
-        chkStayHere.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkStayHereActionPerformed(evt);
-            }
-        });
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1463601468_kgpg-key4-kgpg.png"))); // NOI18N
         jButton1.setToolTipText("Forgot Password");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -123,34 +117,38 @@ public class JFrameMain extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(204, 0, 0));
         jLabel4.setText("*");
 
+        chkStay.setText("Stay in here");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addGap(62, 62, 62)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel2)
-                .addGap(30, 30, 30)
-                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(chkStayHere)
-                .addGap(51, 51, 51)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102)
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(62, 62, 62)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chkStay)
+                                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(67, 67, 67)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(30, 30, 30)
+                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,16 +171,18 @@ public class JFrameMain extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(chkStayHere))
-                    .addComponent(jButton1))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLogin)
-                    .addComponent(btnRegister)))
+                        .addGap(28, 28, 28)
+                        .addComponent(chkStay)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnRegister)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,27 +192,7 @@ public class JFrameMain extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //EndUser_Bus eb = new EndUser_Bus();
-        try {
-            String username = this.txtEmail.getText();
-            String password = String.valueOf(this.txtPass.getPassword());
-            if (username.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "username empty");
-            } else if (password.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "password empty");
-            } else if (!username.isEmpty() && !password.isEmpty()) {
-
-                e = a.find(username,password);
-                if (e != null) {
-                    LogTimeMain jf = new LogTimeMain(txtEmail.getText());
-                    jf.setVisible(true);
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Invalid Account");
-                }
-            }
-
-        } catch (Exception e) {
-        }
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -225,15 +205,8 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        ForgotPassword f = new ForgotPassword();
-        f.setVisible(true);// TODO add your handling code here:
-        this.dispose();
+       
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void chkStayHereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkStayHereActionPerformed
-        // TODO add your handling code here:
-        Common.Common.CreateSession(txtEmail.getText(),String.valueOf(txtPass.getPassword()));
-    }//GEN-LAST:event_chkStayHereActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,7 +246,7 @@ public class JFrameMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JCheckBox chkStayHere;
+    private javax.swing.JCheckBox chkStay;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

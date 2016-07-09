@@ -25,18 +25,13 @@ import Bus.*;
  */
 public class ForgotPassword extends javax.swing.JFrame {
 
-    Account_Bus a = new Account_Bus();
-    EndUser e = new EndUser();
-
+   
     /**
      * Creates new form ForgotPassword
      */
     public ForgotPassword() {
         initComponents();
-        setLocationRelativeTo(null);
-        getContentPane().setBackground(Color.getHSBColor(1.6f, 0.86f, 1.46f));
-        JRootPane rootPane = this.getRootPane();
-        rootPane.setDefaultButton(btnRegister);
+       
     }
 
     /**
@@ -97,82 +92,10 @@ public class ForgotPassword extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
-        EmailValidator emailValidator = new EmailValidator();
-        if (!emailValidator.validate(txtEmailforget.getText().trim())) {
-            JOptionPane.showMessageDialog(null, "Email Invalid!");
-        } else {
-            final String username = "hoavosac07101995@gmail.com";
-            final String password = "Lecongthangandkutit07101995";
-            Properties p = new Properties();
-            p.put("mail.smtp.auth", "true");
-            p.put("mail.smtp.starttls.enable", "true");
-            p.put("mail.smtp.host", "smtp.gmail.com");
-            p.put("mail.smtp.port", "587");
-            Session s = Session.getInstance(p, new javax.mail.Authenticator() {
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(username, password);
-                }
-            });
-            try {
-                Message msg = new MimeMessage(s);
-                msg.setFrom(new InternetAddress("hoavosac07101995@gmail.com"));
-                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(txtEmailforget.getText()));
-                msg.setSubject("LogTime Software_Forgot Password");
-                msg.setContent("<p>Your new password is: <h4 style=color:red;>m2tpjch</h4></p> <p>Please! Log in and change your password.</p> <p>Thank you!</p>", "text/html;");
-                Transport.send(msg);
-                //JOptionPane.showMessageDialog(null, "Done!");
-                Forgot();
-
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Fail! Please, check the network connection!");
-            }
+      
     }//GEN-LAST:event_btnRegisterActionPerformed
-    }
+    
 
-    public boolean checkusernameagian(String username) {
-        for (EndUser us : a.finllusername()) {
-            if (us.getEmail().toUpperCase().equalsIgnoreCase(username.toUpperCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    void Forgot() {
-        try {
-
-            String email = this.txtEmailforget.getText();
-
-            String password = "m2tpjch";
-
-            if (email.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Email is empty");
-            } else if (!email.isEmpty() && !password.isEmpty()) {
-
-                if (!checkusernameagian(email)) {
-                    JOptionPane.showMessageDialog(null, "Email don't exists");
-                } else {
-                    e.setEmail(email);
-                    e.setPass(password);
-                    if (a.update(e)) {
-                        JOptionPane.showMessageDialog(null, "Successfully! Please check email to get password");
-                        JFrameMain f = new JFrameMain(txtEmailforget.getText());
-                        f.setVisible(true);
-                        this.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Failure! Please try again.");
-
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-        }
-    }
 
     /**
      * @param args the command line arguments

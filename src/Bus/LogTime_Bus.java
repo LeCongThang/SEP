@@ -28,6 +28,7 @@ public class LogTime_Bus {
             while (rs.next()) {
                 Time t = new Time();
                 t.setId(rs.getInt("Id"));
+                t.setdateogTags(rs.getDate("DateofTags"));
                 t.setStartTime(rs.getTimestamp("StartTime"));
                 t.setFinishTime(rs.getTimestamp("FinishTime"));
                 t.setTags(rs.getInt("Id_Tags"));
@@ -42,7 +43,7 @@ public class LogTime_Bus {
         
         return ts;
     }
-
+    
     public Time find(int id) {
         Time t = null;
         try {
@@ -56,6 +57,7 @@ public class LogTime_Bus {
             while (rs.next()) {
                 t = new Time();
                 t.setId(rs.getInt("Id"));
+                t.setdateogTags(rs.getDate("DateofTags"));
                 t.setStartTime(rs.getTimestamp("StartTime"));
                 t.setFinishTime(rs.getTimestamp("FinishTime"));
                 t.setTags(rs.getInt("Id_Tags"));
@@ -69,13 +71,13 @@ public class LogTime_Bus {
         
         return t;
     }
-
+    
     public boolean Create(Time t) {
         try {
             PreparedStatement ps = ConnectDB.getConnection().prepareStatement("insert into Time(startTime,\n"
                     + "finishTime,\n"
                     + "times,\n"
-                    + "Email_User,Id_tags,description) values(?,?,?,?,?,?)");
+                    + "Email_User,Id_tags,description,DateofTags) values(?,?,?,?,?,?,?)");
 //            Calendar cal = Calendar.getInstance();
 //            java.sql.Timestamp timestamp = new java.sql.Timestamp(cal.getTimeInMillis());
             ps.setTimestamp(1, new java.sql.Timestamp(t.getStartTime().getTime()));
@@ -85,20 +87,20 @@ public class LogTime_Bus {
             ps.setString(4, t.getEndUser());
             ps.setInt(5, t.getTags());
             ps.setString(6, t.getDescription());
-            
+            ps.setDate(7,new java.sql.Date( t.getdateogTags().getTime()));
             return ps.executeUpdate() > 0;
             
         } catch (Exception e) {
             return false;
         }
     }
-
+    
     public boolean Update(Time t) {
         try {
             PreparedStatement ps = ConnectDB.getConnection().prepareStatement("update Time set startTime=?,\n"
                     + "finishTime=?,\n"
                     + "times=?,\n"
-                    + "Email_User=?,Id_tags=?,description=? where id=?");
+                    + "Email_User=?,Id_tags=?,description=?,DateofTags=? where id=?");
 //            Calendar cal = Calendar.getInstance();
 //            java.sql.Timestamp timestamp = new java.sql.Timestamp(cal.getTimeInMillis());
             ps.setTimestamp(1, new java.sql.Timestamp(t.getStartTime().getTime()));
@@ -108,7 +110,8 @@ public class LogTime_Bus {
             ps.setString(4, t.getEndUser());
             ps.setInt(5, t.getTags());
             ps.setString(6, t.getDescription());
-            ps.setInt(7, t.getId());
+            ps.setDate(7, new java.sql.Date(t.getdateogTags().getTime()));
+            ps.setInt(8, t.getId());
             return ps.executeUpdate() > 0;
             
         } catch (Exception e) {

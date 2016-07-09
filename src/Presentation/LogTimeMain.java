@@ -7,14 +7,9 @@ package Presentation;
 
 import java.awt.Desktop;
 import java.awt.Dimension;
-import java.io.*;
-import java.net.URISyntaxException;
 import java.net.URL;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JRootPane;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -278,88 +273,44 @@ public class LogTimeMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-        JFrameReport t = new JFrameReport();
-        this.getContentPane().add(t);
-        Dimension desktopSize = this.getSize();
-        Dimension jInternalFrameSize = t.getSize();
-        t.setLocation((desktopSize.width - jInternalFrameSize.width) / 2 - 3,
-                (desktopSize.height - jInternalFrameSize.height) / 2 + 35);
-        t.setVisible(true);
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnReportActionPerformed
-
+    void CloseTabs() {
+        
+    }
     private void btnLogtimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogtimeActionPerformed
         // TODO add your handling code here:
-        JFrameTime t = new JFrameTime();
-        this.getContentPane().add(t);
-        Dimension desktopSize = this.getSize();
-        Dimension jInternalFrameSize = t.getSize();
-        t.setLocation((desktopSize.width - jInternalFrameSize.width) / 2 - 3,
-                (desktopSize.height - jInternalFrameSize.height) / 2 + 35);
-        t.setVisible(true);
+        
 
     }//GEN-LAST:event_btnLogtimeActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        Common.Common.DeleteSession();
-        JFrameMain f = new JFrameMain(lblTK.getText());
-            f.setVisible(true);
-            this.dispose();
+       
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnTagsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTagsActionPerformed
-        JFrameTags t = new JFrameTags();
-        this.getContentPane().add(t);
-        Dimension desktopSize = this.getSize();
-        Dimension jInternalFrameSize = t.getSize();
-        t.setLocation((desktopSize.width - jInternalFrameSize.width) / 2 - 3,
-                (desktopSize.height - jInternalFrameSize.height) / 2 + 35);
-        t.setVisible(true);
+        
         //t.toFront();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnTagsActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
 
-        try {
-            Desktop.getDesktop().browse(new URL("http://mntime.today/index/trangchu").toURI());
-        } catch (Exception e) {
-        }
+        
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
-        JFrameAboutus t = new JFrameAboutus();
-        this.getContentPane().add(t);
-        Dimension desktopSize = this.getSize();
-        Dimension jInternalFrameSize = t.getSize();
-        t.setLocation((desktopSize.width - jInternalFrameSize.width) / 2 - 3,
-                (desktopSize.height - jInternalFrameSize.height) / 2 + 35);
-        t.setVisible(true);
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountActionPerformed
-        JFrameAccount t = new JFrameAccount(lblTK.getText());
-        this.getContentPane().add(t);
-        Dimension desktopSize = this.getSize();
-        Dimension jInternalFrameSize = t.getSize();
-        t.setLocation((desktopSize.width - jInternalFrameSize.width) / 2 - 3,
-                (desktopSize.height - jInternalFrameSize.height) / 2 + 35);
-        t.setVisible(true);
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnAccountActionPerformed
 
     private void btnSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingActionPerformed
-        JFrameSetting t = new JFrameSetting();
-        this.getContentPane().add(t);
-        Dimension desktopSize = this.getSize();
-        Dimension jInternalFrameSize = t.getSize();
-        t.setLocation((desktopSize.width - jInternalFrameSize.width) / 2 - 3,
-                (desktopSize.height - jInternalFrameSize.height) / 2 + 35);
-        t.setVisible(true);
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnSettingActionPerformed
 
     /**

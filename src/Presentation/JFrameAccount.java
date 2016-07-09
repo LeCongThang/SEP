@@ -25,16 +25,14 @@ public class JFrameAccount extends javax.swing.JInternalFrame {
     /**
      * Creates new form JFrameAccount
      */
-    Account_Bus a = new Account_Bus();
-    EndUser e = new EndUser();
-
+   
     public JFrameAccount() {
         initComponents();
+       
     }
 
     public JFrameAccount(String email) {
-        initComponents();
-        txtEmail.setText(email);
+       
     }
 
     /**
@@ -78,12 +76,16 @@ public class JFrameAccount extends javax.swing.JInternalFrame {
         setTitle("MANAGE ACCOUNT");
         setPreferredSize(new java.awt.Dimension(777, 432));
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Email:");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("New Password:");
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Re Enter Password:");
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Choose Avata:");
 
         btnUpload.setText("Upload");
@@ -93,7 +95,8 @@ public class JFrameAccount extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1463725204_save.png"))); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1468020124_download.png"))); // NOI18N
+        btnSave.setText("Save");
         btnSave.setToolTipText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +104,8 @@ public class JFrameAccount extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1462375022_Close_Box_Red.png"))); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1468022384_Cancel.png"))); // NOI18N
+        btnCancel.setText("Cancel");
         btnCancel.setToolTipText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,9 +140,9 @@ public class JFrameAccount extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(lblFile))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtRePass, javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,87 +174,34 @@ public class JFrameAccount extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel7))
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(btnUpload)
-                            .addComponent(lblFile))
-                        .addGap(29, 29, 29)
-                        .addComponent(btnSave))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(btnUpload)
+                    .addComponent(lblFile))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
                     .addComponent(btnCancel))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        int result = fileChooser.showOpenDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
-            lblFile.setText(selectedFile.getAbsolutePath());
-        }
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUploadActionPerformed
-    public boolean checkusernameagian(String username) {
-        for (EndUser us : a.finllusername()) {
-            if (us.getEmail().toUpperCase().equalsIgnoreCase(username.toUpperCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    void Update() {
-        try {
-
-            String email = txtEmail.getText();
-            String password = String.valueOf(txtPass.getPassword());
-            String repass = String.valueOf(txtRePass.getPassword());
-            if (email.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Email is empty");
-            } else if (password.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "New password is empty");
-            } else if (repass.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Renew password is empty");
-            } else if (!repass.equals(password)) {
-                JOptionPane.showMessageDialog(null, "Password not match");
-            } else if (!email.isEmpty() && !password.isEmpty()) {
-
-                if (!checkusernameagian(email)) {
-                    JOptionPane.showMessageDialog(null, "Email don't exists");
-                } else {
-                    e.setEmail(email);
-                    e.setPass(password);
-                    if (a.update(e)) {
-                        JOptionPane.showMessageDialog(null, "Successfully!");
-                        Common.Common.CreateSession(email, repass);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Failure! Please try again.");
-
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-        }
-    }
+   
+    
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Update();
+       
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        txtPass.setText("");
-        txtRePass.setText("");
+        
 
     }//GEN-LAST:event_btnCancelActionPerformed
 

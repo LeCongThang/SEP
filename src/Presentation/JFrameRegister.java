@@ -37,7 +37,7 @@ public class JFrameRegister extends javax.swing.JFrame {
     public JFrameRegister() {
         initComponents();
         setLocationRelativeTo(null);
-        getContentPane().setBackground(Color.getHSBColor(1.6f, 0.86f, 1.46f));
+        getContentPane().setBackground(new java.awt.Color(0,153,100));
         JRootPane rootPane = this.getRootPane();
         rootPane.setDefaultButton(btnRegister);
     }

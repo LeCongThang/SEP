@@ -16,6 +16,7 @@ public class JFrameSetting extends javax.swing.JInternalFrame {
      */
     public JFrameSetting() {
         initComponents();
+        
     }
 
     /**
