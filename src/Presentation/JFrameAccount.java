@@ -25,14 +25,18 @@ public class JFrameAccount extends javax.swing.JInternalFrame {
     /**
      * Creates new form JFrameAccount
      */
-   
+    Account_Bus a = new Account_Bus();
+    EndUser e = new EndUser();
+
     public JFrameAccount() {
         initComponents();
-       
+        getContentPane().setBackground(new java.awt.Color(0, 153, 100));
     }
 
     public JFrameAccount(String email) {
-       
+        initComponents();
+        txtEmail.setText(email);
+        getContentPane().setBackground(new java.awt.Color(0, 153, 100));
     }
 
     /**
@@ -189,19 +193,76 @@ public class JFrameAccount extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
-        
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+            lblFile.setText(selectedFile.getAbsolutePath());
+        }
+
+        // TODO add your handling code here:
+    }
+
+    public boolean checkusernameagian(String username) {
+        for (EndUser us : a.finllusername()) {
+            if (us.getEmail().toUpperCase().equalsIgnoreCase(username.toUpperCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void Update() {
+        try {
+
+            String email = txtEmail.getText();
+            String password = String.valueOf(txtPass.getPassword());
+            String repass = String.valueOf(txtRePass.getPassword());
+            if (email.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Email is empty");
+            } else if (password.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "New password is empty");
+            } else if (repass.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Renew password is empty");
+            } else if (!repass.equals(password)) {
+                JOptionPane.showMessageDialog(null, "Password not match");
+            } else if (!email.isEmpty() && !password.isEmpty()) {
+
+                if (!checkusernameagian(email)) {
+                    JOptionPane.showMessageDialog(null, "Email don't exists");
+                } else {
+                    e.setEmail(email);
+                    e.setPass(password);
+                    if (a.update(e)) {
+                        JOptionPane.showMessageDialog(null, "Successfully!");
+                        Common.Common.CreateSession(email, repass);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failure! Please try again.");
+
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUploadActionPerformed
-   
-    
+
+
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-       
+        Update();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        
+        txtPass.setText("");
+        txtRePass.setText("");
 
     }//GEN-LAST:event_btnCancelActionPerformed
 

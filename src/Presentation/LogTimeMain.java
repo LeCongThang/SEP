@@ -317,6 +317,15 @@ JFrameTags t = new JFrameTags();
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountActionPerformed
+
+        CloseTabs();
+        JFrameAccount t = new JFrameAccount(lblTK.getText());
+        this.getContentPane().add(t);
+        Dimension desktopSize = this.getSize();
+        Dimension jInternalFrameSize = t.getSize();
+        t.setLocation((desktopSize.width - jInternalFrameSize.width) / 2 - 3,
+                (desktopSize.height - jInternalFrameSize.height) / 2 + 35);
+        t.setVisible(true);
         
     }//GEN-LAST:event_btnAccountActionPerformed
 
